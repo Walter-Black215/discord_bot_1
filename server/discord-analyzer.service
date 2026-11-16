@@ -1,0 +1,22 @@
+[Unit]
+Description=Discord Analyzer bot (/analyze, /анализ)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=analyzer
+Group=analyzer
+WorkingDirectory=/opt/discord-analyzer/app
+ExecStart=/usr/bin/dotnet /opt/discord-analyzer/app/DiscordAnalyzerBot.dll
+Restart=always
+RestartSec=30
+Environment=DOTNET_CLI_TELEMETRY_OPTOUT=1
+Environment=DOTNET_NOLOGO=1
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
